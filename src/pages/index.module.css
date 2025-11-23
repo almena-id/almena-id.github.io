@@ -1,23 +1,231 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 122, 26, 0.16), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(255, 157, 77, 0.12), transparent 30%),
+    linear-gradient(180deg, #0c0f17 0%, #070910 100%);
+  color: var(--almena-text);
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  padding: 48px 20px 72px;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 12px;
 }
 
-.buttons {
+.heroCopy {
+  display: grid;
+  gap: 14px;
+}
+
+.brand {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 12px;
+}
+
+.brandMark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 122, 26, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 122, 26, 0.16), 0 20px 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 122, 26, 0.06);
+}
+
+.brandMark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.brandName {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.brandSub {
+  color: var(--almena-muted);
+  font-size: 14px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 122, 26, 0.28);
+  border-radius: 999px;
+  color: var(--almena-text);
+  font-size: 13px;
+  background: rgba(255, 122, 26, 0.12);
+  width: fit-content;
+}
+
+.tagDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--almena-accent);
+  box-shadow: 0 0 14px rgba(255, 122, 26, 0.7);
+}
+
+.title {
+  font-size: clamp(38px, 5vw, 54px);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--almena-muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255, 122, 26, 0.12);
+  border: 1px solid rgba(255, 122, 26, 0.35);
+  color: var(--almena-text);
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  width: fit-content;
+}
+
+.heroCard {
+  position: relative;
+  border: 1px solid rgba(255, 122, 26, 0.25);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(17, 24, 40, 0.96) 0%, #0b0f1a 100%);
+  padding: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 122, 26, 0.08);
+}
+
+.heroCard::before,
+.heroCard::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--almena-blur));
+  opacity: 0.5;
+}
+
+.heroCard::before {
+  width: 240px;
+  height: 240px;
+  background: rgba(255, 122, 26, 0.24);
+  top: -80px;
+  right: -60px;
+}
+
+.heroCard::after {
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 157, 77, 0.2);
+  bottom: -70px;
+  left: -50px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--almena-muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.cardPill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--almena-text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--almena-grid);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 1px 0 rgba(255, 122, 26, 0.08);
+}
+
+.idChip {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--almena-grid);
+  display: grid;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.idRow {
+  display: flex;
+  justify-content: space-between;
+  color: var(--almena-text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+.idLabel {
+  color: var(--almena-muted);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 122, 26, 0.12);
+  color: #ffe8d5;
+  border: 1px solid rgba(255, 122, 26, 0.35);
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--almena-accent);
+  box-shadow: 0 0 12px rgba(255, 122, 26, 0.8);
+}
+
+.main {
+  max-width: 1100px;
+  margin: 40px auto 0;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 12px 0 24px;
+  }
+
+  .page {
+    padding: 32px 16px 60px;
+  }
 }

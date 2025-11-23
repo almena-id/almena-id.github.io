@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almena ID — Identidad descentralizada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b10;
+      --panel: #0f121c;
+      --card: #111827;
+      --accent: #ff7a1a;
+      --accent-2: #ffb06b;
+      --muted: #c3cad7;
+      --text: #f2f4f9;
+      --grid: rgba(255, 255, 255, 0.06);
+      --blur: 26px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 122, 26, 0.16), transparent 32%),
+        radial-gradient(circle at 82% 12%, rgba(255, 157, 77, 0.12), transparent 30%),
+        linear-gradient(180deg, #0c0f17 0%, #070910 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(9, 11, 16, 0.78);
+      border-bottom: 1px solid var(--grid);
+      z-index: 10;
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 122, 26, 0.45);
+      box-shadow: 0 0 0 1px rgba(255, 122, 26, 0.16), 0 20px 50px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 122, 26, 0.06);
+    }
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .brand-sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 122, 26, 0.28);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 13px;
+      background: rgba(255, 122, 26, 0.12);
+    }
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(255, 122, 26, 0.7);
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--grid);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 600;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 140ms ease, color 140ms ease;
+    }
+    .lang-btn.active {
+      background: rgba(255, 122, 26, 0.14);
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px rgba(255, 122, 26, 0.3);
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 122, 26, 0.55);
+      color: #0d0b0a;
+      background: linear-gradient(135deg, #ff8a32, #ff6a1a);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      box-shadow: 0 10px 30px rgba(255, 122, 26, 0.25);
+      transition: transform 140ms ease, box-shadow 160ms ease;
+    }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(255, 122, 26, 0.35); }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 40px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      padding: 5px 0 30px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 54px);
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+    .hero p { margin: 0 0 22px; color: var(--muted); font-size: 17px; }
+    .hero-card {
+      position: relative;
+      border: 1px solid rgba(255, 122, 26, 0.25);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(17, 24, 40, 0.96) 0%, #0b0f1a 100%);
+      padding: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 122, 26, 0.08);
+    }
+    .hero-card::before, .hero-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(var(--blur));
+      opacity: 0.5;
+    }
+    .hero-card::before {
+      width: 240px; height: 240px;
+      background: rgba(255, 122, 26, 0.24);
+      top: -80px; right: -60px;
+    }
+    .hero-card::after {
+      width: 180px; height: 180px;
+      background: rgba(255, 157, 77, 0.2);
+      bottom: -70px; left: -50px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .id-chip {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--grid);
+      display: grid;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .id-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    .id-label { color: var(--muted); }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 122, 26, 0.12);
+      color: #ffe8d5;
+      border: 1px solid rgba(255, 122, 26, 0.35);
+      margin-top: 12px;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+    }
+    .status .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255, 122, 26, 0.8);
+    }
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin: 20px 0 32px;
+    }
+    .card {
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid var(--grid);
+      background: linear-gradient(150deg, rgba(17, 24, 39, 0.94), rgba(14, 18, 30, 0.94)) padding-box,
+                  linear-gradient(140deg, rgba(255, 122, 26, 0.18), rgba(255, 176, 107, 0.05)) border-box;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 122, 26, 0.08);
+      display: grid;
+      gap: 10px;
+    }
+    .card h3 { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 122, 26, 0.12);
+      border: 1px solid rgba(255, 122, 26, 0.35);
+      color: var(--text);
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 122, 26, 0.45), rgba(255, 122, 26, 0));
+    }
+    .stacked {
+      display: grid;
+      gap: 12px;
+    }
+    .cta-secondary {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--grid);
+      background: rgba(255, 255, 255, 0.02);
+      transition: border-color 160ms ease, transform 140ms ease;
+    }
+    .cta-secondary:hover { border-color: rgba(255, 122, 26, 0.5); transform: translateY(-1px); }
+    footer {
+      border-top: 1px solid var(--grid);
+      padding: 28px 20px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      background: linear-gradient(180deg, rgba(255, 122, 26, 0.05), transparent 45%);
+    }
+    footer a { color: var(--text); text-decoration: none; }
+    @media (max-width: 840px) {
+      .hero { grid-template-columns: 1fr; padding: 28px 0 40px; }
+      .nav { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-mark"><img src="almena.png" alt="Almena ID"></div>
+        <div>
+          <div>Almena ID</div>
+          <div class="brand-sub" data-es="Identidad soberana, sin fricción" data-en="Sovereign identity, frictionless">Identidad soberana, sin fricción</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="lang-switch" aria-label="Idioma">
+          <button class="lang-btn active" data-lang-btn="es">ES</button>
+          <button class="lang-btn" data-lang-btn="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1 data-es="Identidad segura que viaja contigo, no con los servidores." data-en="Secure identity that travels with you, not with servers.">Identidad segura que viaja contigo, no con los servidores.</h1>
+        <p data-es="Almena ID elimina intermediarios, firma tus credenciales en cadena y te permite controlar qué compartes, cuándo y con quién. Privacidad, verificaciones instantáneas y confianza programable." data-en="Almena ID removes intermediaries, signs your credentials on-chain, and lets you control what you share, when and with whom. Privacy, instant verifications, and programmable trust.">Almena ID elimina intermediarios, firma tus credenciales en cadena y te permite controlar qué compartes, cuándo y con quién. Privacidad, verificaciones instantáneas y confianza programable.</p>
+        <div class="stacked">
+          <div class="pill" data-es="Zero-Knowledge · Wallet nativa · Control granular" data-en="Zero-Knowledge · Native wallet · Granular control">Zero-Knowledge · Wallet nativa · Control granular</div>
+        </div>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="card-header">
+          <span data-es="Credencial soberana" data-en="Sovereign credential">Credencial soberana</span>
+          <span class="pill">checksum · 0xA1E9</span>
+        </div>
+        <div class="id-chip">
+          <div class="id-row">
+            <span class="id-label">ID</span>
+            <span>did:alm:0x9c3f...b21a</span>
+          </div>
+          <div class="id-row">
+            <span class="id-label">Holder</span>
+            <span>A. Soberano</span>
+          </div>
+          <div class="id-row">
+            <span class="id-label">Reclaim</span>
+            <span>T+30s · multi-sig</span>
+          </div>
+        </div>
+        <div class="status"><span class="dot"></span><span data-es="Estado: listo para verificar" data-en="Status: ready to verify">Estado: listo para verificar</span></div>
+      </div>
+    </section>
+
+    <section id="pilares">
+      <div class="section-title"><span class="tag-dot"></span><span data-es="Casos de uso" data-en="Use cases">Casos de uso</span><span class="line"></span></div>
+      <div class="grid">
+        <div class="card">
+          <h3 data-es="Acceso sin cuentas" data-en="Access without accounts">Acceso sin cuentas</h3>
+          <p data-es="Entra en webs o apps sin usuario/contraseña ni Google. Menos fricción en entornos empresariales." data-en="Access apps without username/password or Google federation. Less friction for enterprise flows.">Entra en webs o apps sin usuario/contraseña ni Google. Menos fricción en entornos empresariales.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Onboarding ultrarrápido" data-en="Ultra-fast onboarding">Onboarding ultrarrápido</h3>
+          <p data-es="Si ya llevas VC emitidas, un servicio las acepta en segundos sin rehacer KYC. Banca, fintech, telco." data-en="If you carry issued VCs, a service accepts them in seconds without redoing KYC. Banking, fintech, telco.">Si ya llevas VC emitidas, un servicio las acepta en segundos sin rehacer KYC. Banca, fintech, telco.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="KYC/AML reutilizable" data-en="Reusable KYC/AML">KYC/AML reutilizable</h3>
+          <p data-es="El KYC de un banco sirve en otro sin volver a subir DNI o selfie. Se verifica la prueba, no tus datos brutos." data-en="KYC from one bank works at another without re-uploading ID or selfie. They verify the proof, not your raw data.">El KYC de un banco sirve en otro sin volver a subir DNI o selfie. Se verifica la prueba, no tus datos brutos.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Pruebas de atributos" data-en="Attribute proofs">Pruebas de atributos</h3>
+          <p data-es="Demuestra +18, reside en UE o empleado de X sin revelar nombre, dirección o DNI. Privacidad práctica." data-en="Prove 18+, EU resident, or employee of X without revealing name, address, or ID. Practical privacy.">Demuestra +18, reside en UE o empleado de X sin revelar nombre, dirección o DNI. Privacidad práctica.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Certificaciones verificables" data-en="Verifiable certifications">Certificaciones verificables</h3>
+          <p data-es="Títulos, cursos, acreditaciones técnicas sin fraude. Agiliza contratos y selección." data-en="Degrees, courses, technical accreditations without fraud. Speeds contracts and hiring.">Títulos, cursos, acreditaciones técnicas sin fraude. Agiliza contratos y selección.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Identidad para IoT" data-en="Identity for IoT">Identidad para IoT</h3>
+          <p data-es="Cada dispositivo con su DID. Autenticación entre máquinas sin servidores centrales." data-en="Each device has its DID. Machine-to-machine auth without central servers.">Cada dispositivo con su DID. Autenticación entre máquinas sin servidores centrales.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Identidad corporativa" data-en="Service identity">Identidad corporativa</h3>
+          <p data-es="Servicios con DID que prueban estado, permisos o auditorías. Automatiza B2B sin cadenas de certificados." data-en="Services with DIDs proving status, permissions, or audits. Automate B2B without traditional cert chains.">Servicios con DID que prueban estado, permisos o auditorías. Automatiza B2B sin cadenas de certificados.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Cadena de suministro" data-en="Supply chain">Cadena de suministro</h3>
+          <p data-es="Productores, transportistas y retailers emiten VC. Un enlace verificable a origen, controles y certificaciones." data-en="Producers, shippers, retailers issue VCs. One verifiable link to origin, checks, and certifications.">Productores, transportistas y retailers emiten VC. Un enlace verificable a origen, controles y certificaciones.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Salud" data-en="Health">Salud</h3>
+          <p data-es="Certificados médicos portables (vacunas, alergias) que compartes a medida. No toda la historia en cadena." data-en="Portable medical certificates (vaccines, allergies) shared selectively. Not your whole record on-chain.">Certificados médicos portables (vacunas, alergias) que compartes a medida. No toda la historia en cadena.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Gobierno digital" data-en="Digital government">Gobierno digital</h3>
+          <p data-es="Certificados oficiales listos para usar en trámites públicos o privados, sin PDFs firmados." data-en="Official certificates ready for public or private services, no signed PDFs.">Certificados oficiales listos para usar en trámites públicos o privados, sin PDFs firmados.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Acceso físico y lógico" data-en="Physical & logical access">Acceso físico y lógico</h3>
+          <p data-es="Pases VC para edificios, laboratorios o coworkings. Funciona incluso offline." data-en="VC passes for buildings, labs, coworkings. Works even offline.">Pases VC para edificios, laboratorios o coworkings. Funciona incluso offline.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Pruebas de reputación" data-en="Reputation proofs">Pruebas de reputación</h3>
+          <p data-es="En marketplaces o DAOs muestras historial sin exponer identidad completa." data-en="In marketplaces or DAOs, show history without exposing full identity.">En marketplaces o DAOs muestras historial sin exponer identidad completa.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Autoría y procedencia" data-en="Authorship & provenance">Autoría y procedencia</h3>
+          <p data-es="Contenido firmado con DID y VC de procedencia para frenar deepfakes y plagio." data-en="Content signed with a DID and provenance VC to curb deepfakes and plagiarism.">Contenido firmado con DID y VC de procedencia para frenar deepfakes y plagio.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Interoperabilidad laboral" data-en="Work interoperability">Interoperabilidad laboral</h3>
+          <p data-es="Permisos, roles y formaciones en VC. Cambia de proyecto sin onboarding repetido." data-en="Permissions, roles, training as VCs. Switch projects without repetitive onboarding.">Permisos, roles y formaciones en VC. Cambia de proyecto sin onboarding repetido.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Identidad para IA" data-en="Identity for AI agents">Identidad para IA</h3>
+          <p data-es="Bots con DID y credenciales sobre capacidades, límites y responsable. Trazabilidad real." data-en="Bots with DIDs and creds on capabilities, limits, and accountable owner. Real traceability.">Bots con DID y credenciales sobre capacidades, límites y responsable. Trazabilidad real.</p>
+        </div>
+        <div class="card">
+          <h3 data-es="Contratos con identidad" data-en="Smart contracts with ID">Contratos con identidad</h3>
+          <p data-es="Un smart contract exige rol o licencia verificada vía VC antes de ejecutar." data-en="A smart contract requires a verified role or license via VC before execution.">Un smart contract exige rol o licencia verificada vía VC antes de ejecutar.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span data-es="Almena ID · Identidad que te pertenece." data-en="Almena ID · Identity that belongs to you.">Almena ID · Identidad que te pertenece.</span>
+    <span data-es=" Escríbenos: " data-en=" Write to us: "> Escríbenos: </span>
+    <a href="mailto:info@almena.id">info@almena.id</a>
+  </footer>
+
+  <script>
+    (() => {
+      const html = document.documentElement;
+      const textNodes = document.querySelectorAll('[data-es]');
+      const linkNodes = document.querySelectorAll('[data-href-es]');
+      const langButtons = document.querySelectorAll('[data-lang-btn]');
+      const stored = localStorage.getItem('almena-lang');
+      const initial = stored === 'en' ? 'en' : 'es';
+
+      function applyLang(lang) {
+        html.lang = lang;
+        document.body.dataset.lang = lang;
+        textNodes.forEach((el) => {
+          const value = el.dataset[lang];
+          if (value) el.textContent = value;
+        });
+        linkNodes.forEach((el) => {
+          const href = el.dataset[lang === 'es' ? 'hrefEs' : 'hrefEn'];
+          if (href) el.href = href;
+        });
+        langButtons.forEach((btn) => {
+          btn.classList.toggle('active', btn.dataset.langBtn === lang);
+        });
+        localStorage.setItem('almena-lang', lang);
+      }
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener('click', () => applyLang(btn.dataset.langBtn));
+      });
+
+      applyLang(initial);
+    })();
+  </script>
+</body>
+</html>

@@ -1,30 +1,58 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --almena-bg: #0a0b10;
+  --almena-panel: #0f121c;
+  --almena-card: #111827;
+  --almena-accent: #ff7a1a;
+  --almena-accent-2: #ffb06b;
+  --almena-muted: #c3cad7;
+  --almena-text: #f2f4f9;
+  --almena-grid: rgba(255, 255, 255, 0.06);
+  --almena-blur: 26px;
+  --ifm-color-primary: #ff7a1a;
+  --ifm-color-primary-dark: #e76d17;
+  --ifm-color-primary-darker: #c95f15;
+  --ifm-color-primary-darkest: #9f4a11;
+  --ifm-color-primary-light: #ff8f3d;
+  --ifm-color-primary-lighter: #ffab6b;
+  --ifm-color-primary-lightest: #ffc28f;
+  --ifm-font-family-base: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --ifm-code-font-family: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 122, 26, 0.08);
+  --ifm-navbar-background-color: rgba(9, 11, 16, 0.78);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #ff7a1a;
+  --ifm-color-primary-dark: #e76d17;
+  --ifm-color-primary-darker: #c95f15;
+  --ifm-color-primary-darkest: #9f4a11;
+  --ifm-color-primary-light: #ff8f3d;
+  --ifm-color-primary-lighter: #ffb06b;
+  --ifm-color-primary-lightest: #ffc28f;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 122, 26, 0.12);
+}
+
+.footer {
+  background:
+    linear-gradient(180deg, rgba(255, 122, 26, 0.05), transparent 45%),
+    #0c0f17;
+  border-top: 1px solid var(--almena-grid);
+  color: var(--almena-text);
+}
+
+.footer__bottom {
+  border-top: 1px solid var(--almena-grid);
+  color: var(--almena-muted);
+}
+
+.footer__title,
+.footer__link-item {
+  color: var(--almena-text);
+}
+
+.footer__link-item:hover {
+  color: var(--almena-accent);
 }
