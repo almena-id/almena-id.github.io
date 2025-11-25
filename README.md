@@ -31,7 +31,7 @@ This command generates static content into the `build` directory and can be serv
 ## Run
 
 ```bash
-yarn run
+yarn serve
 ```
 
 This command runs static content into the `build` directory.

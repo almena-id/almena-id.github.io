@@ -10,171 +10,90 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: translate({
-      id: 'homepage.features.access.title',
-      message: 'Access without accounts',
+      id: 'homepage.features.didLogin.title',
+      message: 'DID login',
     }),
     description: translate({
-      id: 'homepage.features.access.description',
+      id: 'homepage.features.didLogin.description',
       message:
-        'Access apps without username/password or Google federation. Less friction for enterprise flows.',
+        'Authentication with your DID keys instead of passwords or third-party OAuth. Works across tenants.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.onboarding.title',
-      message: 'Ultra-fast onboarding',
+      id: 'homepage.features.apiTrust.title',
+      message: 'API-to-API trust',
     }),
     description: translate({
-      id: 'homepage.features.onboarding.description',
+      id: 'homepage.features.apiTrust.description',
       message:
-        "If you carry issued VCs, a service accepts them in seconds without redoing KYC. Banking, fintech, telco.",
+        'Backends and services expose a DID, verify counterparty keys, and get mutual authentication without shared secrets.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.kyc.title',
-      message: 'Reusable KYC/AML',
+      id: 'homepage.features.deviceIdentity.title',
+      message: 'Devices with DIDs',
     }),
     description: translate({
-      id: 'homepage.features.kyc.description',
+      id: 'homepage.features.deviceIdentity.description',
       message:
-        'KYC from one bank works at another without re-uploading ID or selfie. They verify the proof, not your raw data.',
+        'Each piece of hardware has a DID for signing and receiving commands. Revoke, rotate keys, or quarantine on compromise.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.attributeProofs.title',
-      message: 'Attribute proofs',
+      id: 'homepage.features.domainBinding.title',
+      message: 'Domain binding',
     }),
     description: translate({
-      id: 'homepage.features.attributeProofs.description',
+      id: 'homepage.features.domainBinding.description',
       message:
-        'Prove 18+, EU resident, or employee of X without revealing name, address, or ID. Practical privacy.',
+        'Link DIDs to DNS or ENS so users can resolve that they are talking to the real domain or service.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.certifications.title',
-      message: 'Verifiable certifications',
+      id: 'homepage.features.keyRotation.title',
+      message: 'Key rotation & recovery',
     }),
     description: translate({
-      id: 'homepage.features.certifications.description',
+      id: 'homepage.features.keyRotation.description',
       message:
-        'Degrees, courses, technical accreditations without fraud. Speeds contracts and hiring.',
+        'Update DID documents to rotate keys, add guardians, or migrate wallets without breaking existing integrations.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.iot.title',
-      message: 'Identity for IoT',
+      id: 'homepage.features.provenance.title',
+      message: 'Signed provenance',
     }),
     description: translate({
-      id: 'homepage.features.iot.description',
-      message: 'Each device has its DID. Machine-to-machine auth without central servers.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.serviceIdentity.title',
-      message: 'Service identity',
-    }),
-    description: translate({
-      id: 'homepage.features.serviceIdentity.description',
+      id: 'homepage.features.provenance.description',
       message:
-        'Services with DIDs proving status, permissions, or audits. Automate B2B without traditional cert chains.',
+        'Sign data feeds, PDFs, or contracts with a DID so consumers can verify origin and detect tampering.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.supplyChain.title',
-      message: 'Supply chain',
+      id: 'homepage.features.messaging.title',
+      message: 'Encrypted messaging',
     }),
     description: translate({
-      id: 'homepage.features.supplyChain.description',
+      id: 'homepage.features.messaging.description',
       message:
-        'Producers, shippers, retailers issue VCs. One verifiable link to origin, checks, and certifications.',
+        'Use DID service endpoints (DIDComm) to exchange encrypted, authenticated messages between people, bots, or services.',
     }),
   },
   {
     title: translate({
-      id: 'homepage.features.health.title',
-      message: 'Health',
+      id: 'homepage.features.allowlists.title',
+      message: 'DID allowlists',
     }),
     description: translate({
-      id: 'homepage.features.health.description',
+      id: 'homepage.features.allowlists.description',
       message:
-        'Portable medical certificates (vaccines, allergies) shared selectively. Not your whole record on-chain.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.gov.title',
-      message: 'Digital government',
-    }),
-    description: translate({
-      id: 'homepage.features.gov.description',
-      message: 'Official certificates ready for public or private services, no signed PDFs.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.accessControl.title',
-      message: 'Physical & logical access',
-    }),
-    description: translate({
-      id: 'homepage.features.accessControl.description',
-      message: 'VC passes for buildings, labs, coworkings. Works even offline.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.reputation.title',
-      message: 'Reputation proofs',
-    }),
-    description: translate({
-      id: 'homepage.features.reputation.description',
-      message: 'In marketplaces or DAOs, show history without exposing full identity.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.authorship.title',
-      message: 'Authorship & provenance',
-    }),
-    description: translate({
-      id: 'homepage.features.authorship.description',
-      message: 'Content signed with a DID and provenance VC to curb deepfakes and plagiarism.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.work.title',
-      message: 'Work interoperability',
-    }),
-    description: translate({
-      id: 'homepage.features.work.description',
-      message: 'Permissions, roles, training as VCs. Switch projects without repetitive onboarding.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.ai.title',
-      message: 'Identity for AI agents',
-    }),
-    description: translate({
-      id: 'homepage.features.ai.description',
-      message:
-        'Bots with DIDs and creds on capabilities, limits, and accountable owner. Real traceability.',
-    }),
-  },
-  {
-    title: translate({
-      id: 'homepage.features.smartContracts.title',
-      message: 'Smart contracts with ID',
-    }),
-    description: translate({
-      id: 'homepage.features.smartContracts.description',
-      message: 'A smart contract requires a verified role or license via VC before execution.',
+        'Access policies where only approved DIDs can call APIs, read resources, or enter facilities.',
     }),
   },
 ];

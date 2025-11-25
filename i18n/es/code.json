@@ -362,101 +362,53 @@
   "homepage.meta.description": {
     "message": "Identidad segura que viaja contigo, no con los servidores."
   },
-  "homepage.features.access.title": {
-    "message": "Acceso sin cuentas"
+  "homepage.features.didLogin.title": {
+    "message": "Inicio de sesión con DID"
   },
-  "homepage.features.access.description": {
-    "message": "Ingresa a apps sin usuario/contraseña ni federación de Google. Menos fricción en flujos empresariales."
+  "homepage.features.didLogin.description": {
+    "message": "Autentícate con tus claves DID en vez de contraseñas u OAuth de terceros. Funciona en múltiples tenants."
   },
-  "homepage.features.onboarding.title": {
-    "message": "Onboarding ultrarrápido"
+  "homepage.features.apiTrust.title": {
+    "message": "Confianza API a API"
   },
-  "homepage.features.onboarding.description": {
-    "message": "Si llevas VCs emitidas, un servicio las acepta en segundos sin repetir KYC. Banca, fintech, telco."
+  "homepage.features.apiTrust.description": {
+    "message": "Los backends exponen un DID, verifican las llaves de la contraparte y logran autenticación mutua sin secretos compartidos."
   },
-  "homepage.features.kyc.title": {
-    "message": "KYC/AML reutilizable"
+  "homepage.features.deviceIdentity.title": {
+    "message": "Dispositivos con DID"
   },
-  "homepage.features.kyc.description": {
-    "message": "El KYC de un banco sirve en otro sin volver a subir DNI o selfie. Validan la prueba, no tus datos brutos."
+  "homepage.features.deviceIdentity.description": {
+    "message": "Cada pieza de hardware tiene un DID para firmar y recibir comandos. Revoca, rota llaves o pon en cuarentena si hay compromiso."
   },
-  "homepage.features.attributeProofs.title": {
-    "message": "Pruebas de atributos"
+  "homepage.features.domainBinding.title": {
+    "message": "Vinculación con dominios"
   },
-  "homepage.features.attributeProofs.description": {
-    "message": "Demuestra 18+, residente UE o empleado de X sin revelar nombre, dirección o documento. Privacidad práctica."
+  "homepage.features.domainBinding.description": {
+    "message": "Vincula DIDs con DNS o ENS para que los usuarios comprueben que hablan con el dominio o servicio legítimo."
   },
-  "homepage.features.certifications.title": {
-    "message": "Certificaciones verificables"
+  "homepage.features.keyRotation.title": {
+    "message": "Rotación y recuperación de claves"
   },
-  "homepage.features.certifications.description": {
-    "message": "Títulos, cursos y acreditaciones técnicas sin fraude. Acelera contratos y contratación."
+  "homepage.features.keyRotation.description": {
+    "message": "Actualiza documentos DID para rotar llaves, añadir guardianes o migrar billeteras sin romper integraciones."
   },
-  "homepage.features.iot.title": {
-    "message": "Identidad para IoT"
+  "homepage.features.provenance.title": {
+    "message": "Procedencia firmada"
   },
-  "homepage.features.iot.description": {
-    "message": "Cada dispositivo tiene su DID. Autenticación máquina-a-máquina sin servidores centrales."
+  "homepage.features.provenance.description": {
+    "message": "Firma feeds de datos, PDFs o contratos con un DID para que quien consume verifique origen y detecte alteraciones."
   },
-  "homepage.features.serviceIdentity.title": {
-    "message": "Identidad de servicio"
+  "homepage.features.messaging.title": {
+    "message": "Mensajería cifrada"
   },
-  "homepage.features.serviceIdentity.description": {
-    "message": "Servicios con DIDs que prueban estado, permisos o auditorías. Automatiza B2B sin cadenas de cert tradicionales."
+  "homepage.features.messaging.description": {
+    "message": "Usa endpoints DID (DIDComm) para intercambiar mensajes cifrados y autenticados entre personas, bots o servicios."
   },
-  "homepage.features.supplyChain.title": {
-    "message": "Cadena de suministro"
+  "homepage.features.allowlists.title": {
+    "message": "Listas de acceso DID"
   },
-  "homepage.features.supplyChain.description": {
-    "message": "Productores, transportistas y retailers emiten VCs. Un enlace verificable a origen, controles y certificaciones."
-  },
-  "homepage.features.health.title": {
-    "message": "Salud"
-  },
-  "homepage.features.health.description": {
-    "message": "Certificados médicos portables (vacunas, alergias) compartidos selectivamente. No es tu historial completo on-chain."
-  },
-  "homepage.features.gov.title": {
-    "message": "Gobierno digital"
-  },
-  "homepage.features.gov.description": {
-    "message": "Certificados oficiales listos para servicios públicos o privados, sin PDFs firmados."
-  },
-  "homepage.features.accessControl.title": {
-    "message": "Acceso físico y lógico"
-  },
-  "homepage.features.accessControl.description": {
-    "message": "Pases VC para edificios, laboratorios o coworkings. Funciona incluso sin conexión."
-  },
-  "homepage.features.reputation.title": {
-    "message": "Pruebas de reputación"
-  },
-  "homepage.features.reputation.description": {
-    "message": "En marketplaces o DAOs, muestra historial sin exponer tu identidad completa."
-  },
-  "homepage.features.authorship.title": {
-    "message": "Autoría y procedencia"
-  },
-  "homepage.features.authorship.description": {
-    "message": "Contenido firmado con un DID y VC de procedencia para reducir deepfakes y plagio."
-  },
-  "homepage.features.work.title": {
-    "message": "Interoperabilidad laboral"
-  },
-  "homepage.features.work.description": {
-    "message": "Permisos, roles y formación como VCs. Cambia de proyecto sin onboarding repetitivo."
-  },
-  "homepage.features.ai.title": {
-    "message": "Identidad para agentes de IA"
-  },
-  "homepage.features.ai.description": {
-    "message": "Bots con DIDs y credenciales de capacidades, límites y dueño responsable. Trazabilidad real."
-  },
-  "homepage.features.smartContracts.title": {
-    "message": "Smart contracts con ID"
-  },
-  "homepage.features.smartContracts.description": {
-    "message": "Un contrato inteligente requiere un rol o licencia verificada vía VC antes de ejecutarse."
+  "homepage.features.allowlists.description": {
+    "message": "Políticas donde solo DIDs aprobados pueden llamar APIs, leer recursos o entrar en instalaciones."
   },
   "homepage.features.sectionTitle": {
     "message": "Casos de uso"
